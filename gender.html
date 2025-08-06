@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>猜家人性別</title>
+  <style>
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f4f4f4;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    select {
+      font-size: 1.2rem;
+      padding: 8px 12px;
+      margin-bottom: 20px;
+    }
+    #result {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: green;
+      margin-top: 20px;
+    }
+    #freeRetryBtn {
+      display: none;
+      margin-top: 15px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      animation: floatBtn 1.5s infinite ease-in-out;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    #freeRetryBtn:hover {
+      background-color: #e68a00;
+    }
+    @keyframes floatBtn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+  <h1>猜家人性別</h1>
+
+  <select id="roleSelect" onchange="showGender()">
+    <option value="" disabled selected>選擇家人</option>
+    <option value="爸爸">爸爸</option>
+    <option value="媽媽">媽媽</option>
+    <option value="哥哥">哥哥</option>
+    <option value="姐姐">姐姐</option>
+    <option value="弟弟">弟弟</option>
+    <option value="妹妹">妹妹</option>
+    <option value="爺爺">爺爺</option>
+    <option value="奶奶">奶奶</option>
+  </select>
+
+  <div id="result"></div>
+  <button id="freeRetryBtn" onclick="rickRoll()">猜錯可免費重猜一次</button>
+
+  <script>
+    const genderMap = {
+      "爸爸": "男生",
+      "媽媽": "女生",
+      "哥哥": "男生",
+      "姐姐": "女生",
+      "弟弟": "男生",
+      "妹妹": "女生",
+      "爺爺": "男生",
+      "奶奶": "女生"
+    };
+
+    function showGender() {
+      const role = document.getElementById("roleSelect").value;
+      const gender = genderMap[role];
+      const resultDiv = document.getElementById("result");
+      const retryBtn = document.getElementById("freeRetryBtn");
+
+      resultDiv.innerHTML = `${role}是${gender} ✅`;
+      retryBtn.style.display = "inline-block"; // 猜完才出現
+    }
+
+    function rickRoll() {
+      window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+    }
+  </script>
+</body>
+</html>
